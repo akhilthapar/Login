@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <div class="row bodies">
+        <div class="col-md-4 offset-md-4">
+            <div class="guest-form-card card">
+                <div class="card-header text-center">
+                    <h1 style="padding-top: 12px; font-size: 40px; font-weight: 550;">Register Here</h1>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="registerForm" >
+                    
+                        <div class="form-group">
+                            <label for="fname" title="First Name should not exceed 20 characters">First Name</label>
+                            <div class="input-group">
+                                <input type="text" id="fname" class="form-control"
+                                    [ngClass]="{'is-invalid': registerForm.get('fname').touched && registerForm.get('fname').invalid }"
+                                    formControlName="fname" />
+                                <span class="invalid-feedback">
+                                    <span *ngIf="registerForm.get('fname').hasError('required')">Firstname cannot be
+                                        empty</span>
+                                    <span *ngIf="registerForm.get('fname').hasError('maxlength')">Firstname not exceed
+                                        more
+                                        than 20 characters</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lname" title="Last Name should not exceed 20 characters">Last Name</label>
+                            <input type="text" id="lname" class="form-control"
+                                [ngClass]="{'is-invalid': registerForm.get('lname').touched && registerForm.get('lname').invalid }"
+                                formControlName="lname" />
+                            <span class="invalid-feedback">
+                                <span *ngIf="registerForm.get('lname').hasError('required')">Lastname cannot be
+                                    empty</span>
+                                <span *ngIf="registerForm.get('lname').hasError('maxlength')">Lastname not exceed more
+                                    than
+                                    20 characters</span>
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="emailId" title="Email Id should not exceed 40 characters">Email Id</label>
+                            <input type="email" email id="emailId" class="form-control"
+                                [ngClass]="{'is-invalid': registerForm.get('emailId').touched && registerForm.get('emailId').invalid }"
+                                formControlName="emailId" />
+                            <span class="invalid-feedback">
+                                <span *ngIf="registerForm.get('emailId').hasError('required')">Email Id cannot be
+                                    empty</span>
+                                <span *ngIf="registerForm.get('emailId').hasError('maxlength')">Email Id not exceed
+                                    more
+                                    than 40 characters</span>
+                                <span *ngIf="registerForm.get('emailId').hasError('email')">Email Id is not valid</span>
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" title="Set a password from minimum of 8 characters">Password</label>
+                            <div class="input-group">
+                                <input matInput id="password" class="form-control" formControlName="password"
+                                    [ngClass]="{'is-invalid': registerForm.get('password').touched && registerForm.get('password').invalid }"
+                                    [type]="hide ? 'password' : 'text' " />
+                                <i class="material-icons" matSuffix (click)="password()">
+                                    {{hide ? 'visibility_off' : 'visibility'}}
+                                </i>
+
+                                <span class="invalid-feedback">
+                                    <span *ngIf="registerForm.get('password').hasError('required')">Password cannot be
+                                        empty</span>
+                                    <span *ngIf="registerForm.get('password').hasError('symbol')">Password must contain
+                                        @
+                                        symbol</span>
+                                    <span *ngIf="registerForm.get('password').hasError('minlength')">Password must
+                                        contain
+                                        minimum 8
+                                        characters</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword" title="Re-write your password">Confirm Password</label>
+                            <div class="input-group">
+                                <input type="password" id="confirmPpassword" class="form-control"
+                                    formControlName="confirmPassword"
+                                    [ngClass]="{'is-invalid': registerForm.get('confirmPassword').touched && registerForm.get('confirmPassword').invalid }"
+                                    [type]="hide1 ? 'password' : 'text' " />
+
+                                <i class="material-icons" matSuffix (click)="this.hide1 = !this.hide1">
+                                    {{hide1 ? 'visibility_off' : 'visibility'}}
+                                </i>
+
+
+                                <span class="invalid-feedback">
+                                    Password must match.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="dob" title="Enter your date of birth">Date Of Birth</label>
+                            <input type="date" id="dob" class="form-control"
+                                [ngClass]="{'is-invalid': registerForm.get('dob').touched && registerForm.get('dob').invalid }"
+                                formControlName="dob" />
+                            <span class="invalid-feedback">Date of birth cannot be empty</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country" title="Enter your country name">Country</label>
+                            <input type="text" id="country" class="form-control"
+                                [ngClass]="{'is-invalid': registerForm.get('country').touched && registerForm.get('country').invalid }"
+                                formControlName="country" />
+                            <span class="invalid-feedback">Country name cannot be empty</span>
+                           
+                        </div>
+
+                        <div class="form-group ">
+                            <button class="btn btn-success btn-block line-height"
+                                    [disabled]="registerForm.invalid" (click)="onSubmit()">Submit</button>
+                        </div>
+
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
